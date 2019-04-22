@@ -9,10 +9,6 @@ pyuwsgimemhog
 .. image:: https://img.shields.io/travis/xrmx/pyuwsgimemhog.svg
         :target: https://travis-ci.org/xrmx/pyuwsgimemhog
 
-.. image:: https://readthedocs.org/projects/pyuwsgimemhog/badge/?version=latest
-        :target: https://pyuwsgimemhog.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
 
 Do you want to find out which path of your application run under uWSGI
 is leaking memory? you can use *pyuwsgimemhog* to find it out.
