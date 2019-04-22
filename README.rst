@@ -10,10 +10,12 @@ pyuwsgimemhog
         :target: https://travis-ci.org/xrmx/pyuwsgimemhog
 
 
-Do you want to find out which path of your application run under uWSGI
-is leaking memory? you can use *pyuwsgimemhog* to find it out.
+Do you want to find out which path of your application running under uWSGI 
+is leaking memory?
+
 *pyuwsgimemhog* parses uWSGI logs to point out which paths contributes to
 uWSGI processes RSS memory increase.
+
 
 Installation
 ------------
