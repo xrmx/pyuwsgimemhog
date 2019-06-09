@@ -31,6 +31,9 @@ Requirements
 In order to have the needed information you have to run uWSGI with the 
 *memory-report* enabled.
 
+Please note that it's possible to have meaningful results only if you
+are using one thread per process.
+
 
 Usage
 -----
