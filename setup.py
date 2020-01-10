@@ -28,6 +28,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
     description="uWSGI log parser to find memory hogs",
     entry_points={
@@ -46,6 +47,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/xrmx/pyuwsgimemhog',
-    version='0.1.0',
+    version='0.2.0',
     zip_safe=False,
 )
