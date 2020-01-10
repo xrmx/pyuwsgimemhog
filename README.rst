@@ -43,12 +43,13 @@ You need to pass a single uWSGI log file to *pyuwsgimemhog*:
 ::
 
     pyuwsgimemhog --logfile /path/to/log
-    /api 975
-    /another-api 502
+    /api 975 200 4.9
+    /another-api 502 2 251
 
 
-That means that */api* contributed to increase the memory usage by 975 MB
-and */another-api* by 502 MB.
+That means that */api* contributed to increase the memory usage by 975 MB,
+it has been accounted 200 times and it contributed 4.9 MB per call.
+*/another-api* contributed 502 MB in two occurences so 251MB per call.
 
 
 License

@@ -35,6 +35,7 @@ def uwsgimemhog(logfile, threshold, normalize_nums):
 
     # accumulate the rss differences per path
     diffs = defaultdict(int)
+    counter = defaultdict(int)
     for pid, v in pids_rss.items():
         for i in range(1, len(v)):
             _, prev_rss = v[i-1]
@@ -44,8 +45,9 @@ def uwsgimemhog(logfile, threshold, normalize_nums):
             if rss_diff < 0:
                 continue
             diffs[path] += rss_diff
+            counter[path] += 1
 
     # yield all paths that accumulated more than the threshold
     for path, value in sorted(diffs.items(), key=itemgetter(1), reverse=True):
         if value > threshold:
-            yield path, value
+            yield path, value, counter[path]

@@ -19,8 +19,10 @@ def main(logfile, threshold, normalize_nums):
     """Console script for pyuwsgimemhog."""
     with open(logfile, "r") as f:
         hogs = uwsgimemhog(f, threshold * 1_000_000, normalize_nums)
-        for path, memory in hogs:
-            click.echo('{} {}'.format(path, memory // 1_000_000))
+        for path, memory, count in hogs:
+            click.echo('{} {} {} {:.1f}'.format(
+                path, memory // 1_000_000, count, memory / count / 1_000_000
+            ))
     return 0
 
 

@@ -44,15 +44,15 @@ def test_uwsgimemhog_skips_invalid_lines(invalid_sample_log):
 
 def test_uwsgimemhog_normalize_paths_correctly(normalization_log):
     data = pyuwsgimemhog.uwsgimemhog(normalization_log, threshold=1, normalize_nums=False)
-    assert next(data) == ('/api/12', 9801728)
-    assert next(data) == ('/api/11', 2097152)
+    assert next(data) == ('/api/12', 9801728, 1)
+    assert next(data) == ('/api/11', 2097152, 1)
     with pytest.raises(StopIteration):
         next(data)
 
 
 def test_uwsgimemhog_normalize_nums_correctly(normalization_log):
     data = pyuwsgimemhog.uwsgimemhog(normalization_log, threshold=1, normalize_nums=True)
-    assert next(data) == ('/api/0', 11898880)
+    assert next(data) == ('/api/0', 11898880, 2)
     with pytest.raises(StopIteration):
         next(data)
 
@@ -65,7 +65,7 @@ def test_uwsgimemhog_ignores_negative_rss_diffs(memory_reduction_log):
 
 def test_uwsgimemhog_sum_same_path_on_different_pids_correctly(sample_log):
     data = pyuwsgimemhog.uwsgimemhog(sample_log, threshold=1, normalize_nums=True)
-    assert next(data) == ('/', 3723264)
+    assert next(data) == ('/', 3723264, 2)
     with pytest.raises(StopIteration):
         next(data)
 
