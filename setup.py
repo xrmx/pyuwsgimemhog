@@ -13,8 +13,6 @@ with open('HISTORY.rst') as history_file:
 
 requirements = ['Click>=6.0', ]
 
-setup_requirements = ['pytest-runner', ]
-
 test_requirements = ['pytest', ]
 
 setup(
@@ -44,7 +42,6 @@ setup(
     keywords='pyuwsgimemhog',
     name='pyuwsgimemhog',
     packages=find_packages(include=['pyuwsgimemhog']),
-    setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/xrmx/pyuwsgimemhog',

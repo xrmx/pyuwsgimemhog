@@ -6,9 +6,8 @@ pyuwsgimemhog
 .. image:: https://img.shields.io/pypi/v/pyuwsgimemhog.svg
         :target: https://pypi.python.org/pypi/pyuwsgimemhog
 
-.. image:: https://img.shields.io/travis/xrmx/pyuwsgimemhog.svg
-        :target: https://travis-ci.org/xrmx/pyuwsgimemhog
-
+.. image:: https://github.com/xrmx/pyuwsgimemhog/actions/workflows/ci.yml/badge.svg
+        :target: https://github.com/xrmx/pyuwsgimemhog/actions/workflows/ci.yml
 
 Do you want to find out which path of your application running under uWSGI
 is leaking memory?
