@@ -37,13 +37,13 @@ def sample_log():
 
 
 def test_uwsgimemhog_skips_invalid_lines(invalid_sample_log):
-    data = pyuwsgimemhog.uwsgimemhog(invalid_sample_log, threshold=1, normalize_nums=True)
+    data = pyuwsgimemhog.uwsgimemhog(invalid_sample_log, threshold=1, normalize=pyuwsgimemhog.normalize_path_with_nums)
     with pytest.raises(StopIteration):
         next(data)
 
 
 def test_uwsgimemhog_normalize_paths_correctly(normalization_log):
-    data = pyuwsgimemhog.uwsgimemhog(normalization_log, threshold=1, normalize_nums=False)
+    data = pyuwsgimemhog.uwsgimemhog(normalization_log, threshold=1,  normalize=pyuwsgimemhog.normalize_path)
     assert next(data) == ('/api/12', 9801728, 1)
     assert next(data) == ('/api/11', 2097152, 1)
     with pytest.raises(StopIteration):
@@ -51,27 +51,27 @@ def test_uwsgimemhog_normalize_paths_correctly(normalization_log):
 
 
 def test_uwsgimemhog_normalize_nums_correctly(normalization_log):
-    data = pyuwsgimemhog.uwsgimemhog(normalization_log, threshold=1, normalize_nums=True)
+    data = pyuwsgimemhog.uwsgimemhog(normalization_log, threshold=1, normalize=pyuwsgimemhog.normalize_path_with_nums)
     assert next(data) == ('/api/0', 11898880, 2)
     with pytest.raises(StopIteration):
         next(data)
 
 
 def test_uwsgimemhog_ignores_negative_rss_diffs(memory_reduction_log):
-    data = pyuwsgimemhog.uwsgimemhog(memory_reduction_log, threshold=1, normalize_nums=True)
+    data = pyuwsgimemhog.uwsgimemhog(memory_reduction_log, threshold=1, normalize=pyuwsgimemhog.normalize_path_with_nums)
     with pytest.raises(StopIteration):
         next(data)
 
 
 def test_uwsgimemhog_sum_same_path_on_different_pids_correctly(sample_log):
-    data = pyuwsgimemhog.uwsgimemhog(sample_log, threshold=1, normalize_nums=True)
+    data = pyuwsgimemhog.uwsgimemhog(sample_log, threshold=1, normalize=pyuwsgimemhog.normalize_path_with_nums)
     assert next(data) == ('/', 3723264, 2)
     with pytest.raises(StopIteration):
         next(data)
 
 
 def test_uwsgimemhog_threshold_works_correctly(sample_log):
-    data = pyuwsgimemhog.uwsgimemhog(sample_log, threshold=10_000_000, normalize_nums=True)
+    data = pyuwsgimemhog.uwsgimemhog(sample_log, threshold=10_000_000, normalize=pyuwsgimemhog.normalize_path_with_nums)
     with pytest.raises(StopIteration):
         next(data)
 

@@ -14,7 +14,16 @@ UWSGI_LOG_RE = re.compile(
 )
 
 
-def uwsgimemhog(logfile, threshold, normalize_nums):
+def normalize_path(path):
+    url = urlparse(path)
+    return url.path.rstrip('/') if url.path != '/' else url.path
+
+
+def normalize_path_with_nums(path):
+    return re.sub(r'\d+', '0', normalize_path(path))
+
+
+def uwsgimemhog(logfile, threshold, normalize=normalize_path):
     """Parse a uWSGI logfile and yields the RSS memory usage accumulated by each path"""
     pids_rss = defaultdict(list)
     for line in logfile:
@@ -22,11 +31,7 @@ def uwsgimemhog(logfile, threshold, normalize_nums):
         if not match:
             continue
 
-        # path normalization
-        url = urlparse(match.group('path'))
-        path = url.path.rstrip('/') if url.path != '/' else url.path
-        if normalize_nums:
-            path = re.sub(r'\d+', '0', path)
+        path = normalize(match.group('path'))
 
         # store a list of path and rss for each pid
         pid = match.group('pid')

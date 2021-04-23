@@ -4,7 +4,7 @@
 import sys
 import click
 
-from .pyuwsgimemhog import uwsgimemhog
+from .pyuwsgimemhog import normalize_path, normalize_path_with_nums, uwsgimemhog
 
 
 @click.command()
@@ -17,8 +17,9 @@ from .pyuwsgimemhog import uwsgimemhog
               help='Normalize numbers in urls')
 def main(logfile, threshold, normalize_nums):
     """Console script for pyuwsgimemhog."""
+    normalize = normalize_path_with_nums if normalize_nums else normalize_path
     with open(logfile, "r") as f:
-        hogs = uwsgimemhog(f, threshold * 1_000_000, normalize_nums)
+        hogs = uwsgimemhog(f, threshold * 1_000_000, normalize)
         for path, memory, count in hogs:
             click.echo('{} {} {} {:.1f}'.format(
                 path, memory // 1_000_000, count, memory / count / 1_000_000
