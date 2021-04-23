@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 
 
 UWSGI_LOG_RE = re.compile(
-    r'({rss usage: (?P<rss>\d+) bytes/\d+MB} )?\[pid: (?P<pid>\d+)\|app: .*\|req: .*\] '
+    r'{rss usage: (?P<rss>\d+) bytes/\d+MB} \[pid: (?P<pid>\d+)\|app: .*\|req: .*\] '
     r'(?P<client_ip>\d+.\d+.\d+.\d+) .* \[(?P<date>\w+ \w+\s+\d+ \d+:\d+:\d+ \d+)\] '
     r'(?P<verb>GET|POST|HEAD|PATCH|PUT|DELETE) (?P<path>/.*) => '
     r'generated \d+ bytes in (?P<time>\d+) msecs \(HTTP/\d.\d (?P<status_code>\d+)\)'
