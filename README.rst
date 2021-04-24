@@ -66,15 +66,16 @@ would be the following:
 
     from django.urls import resolve, Resolver404
     from pyuwsgimemhog.pyuwsgimemhog import normalize_path, uwsgimemhog
+    from urllib.parse import urlparse
 
-    def normalize(path):
+    def normalize(url):
         try:
-            return resolve(path).view_name
+            return resolve(urlparse(url).path).view_name
         except Resolver404:
             # This view was not handled by Django so fall back to the default
             # normalization. Use normalize_path_with_nums to normalize numbers
             # in path to 0.
-            return normalize_path(path)
+            return normalize_path(url)
 
     with open(logfile, 'r') as f:
         for view, memory, count in uwsgimemhog(
